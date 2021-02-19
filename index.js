@@ -28,17 +28,17 @@ const ambeeance = (config) => {
       connectedClient.send(
         JSON.stringify({
           type: 'AUTOSPEC',
-          args: Object.keys(configProxy).map((key) =>
-            ({
+          args: Object.keys(configProxy)
+            .map((key) => ({
               key,
               value: configProxy[key],
-            }.filter(
+            }))
+            .filter(
               (spec) =>
                 ['string', 'boolean', 'number'].indexOf(
                   typeof spec.value,
-                ) > 0,
-            )),
-          ),
+                ) > -1,
+            ),
         }),
       );
     });
